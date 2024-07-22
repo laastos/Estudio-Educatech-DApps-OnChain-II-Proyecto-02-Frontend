@@ -17,7 +17,7 @@ const Donate = () => {
     functionName: 'balanceOf',
     args: [address],
   });
-  const { writeContract } = useWriteContract();
+  const { writeContractAsync } = useWriteContract();
   const [amount, setAmount] = useState('');
   const [isMinting, setIsMinting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -41,7 +41,7 @@ const Donate = () => {
       ],
     });*/
     try {
-      const txHash = await writeContract({
+      const txHash = await writeContractAsync({
         abi: GGNFT,
         address: contractAddress,
         functionName: 'mintTo',
@@ -55,10 +55,11 @@ const Donate = () => {
         hash: txHash,
       })
       alert('Donation successful and NFT minted!');
+      refetch();
+      setIsMinting(false);
     } catch (error) {
-      console.error(error);
       setErrorMessage('There was an error processing your donation.');
-    } finally {
+      console.error(error);
       setIsMinting(false);
     }
   };
