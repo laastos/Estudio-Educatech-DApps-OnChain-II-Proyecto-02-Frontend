@@ -1,4 +1,4 @@
-import { getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import { getDefaultConfig } from '@rainbow-me/rainbowkit';
 import { arbitrum, arbitrumSepolia } from "viem/chains";
 
 export const rainbowkitConfig: ReturnType<typeof getDefaultConfig> = getDefaultConfig({
